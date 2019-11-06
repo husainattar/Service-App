@@ -1,0 +1,175 @@
+<% include ./partials/header.ejs  %>
+
+<br>
+<br>
+<br>
+<!--<div class="alert alert-warning" role="alert">
+  This is a warning alert—check it out!
+</div>-->
+<div class="container">
+<div class="row">
+   
+     <div class="col  col-md-1 col-sm-0 col-xs-0">
+
+    </div>
+      <div class="col col-md-10 col-sm-12 col-xs-12">
+          <!---Jumbotron 1--->
+     <div class="jumbotron">
+             <div class="row">
+                  <div class="col-md-4 col-sm-4 col-xs-4">
+                      <img src="https://cdn3.iconfinder.com/data/icons/business-and-finance-icons/512/Business_Man-512.png" img-thumbnail class="img-thumbnail"> 
+                  </div>
+                   <div class="col-md-8 col-sm-8 col-xs-8">
+                        <h4>
+                              <% result.forEach(function(r){ %>
+                        <li> <b>NAME: <%=r.professionalfirstname%>  <%=r.professionallastname%></b> </li>
+                        <li> <b>Age: <%=age%></b> </li>
+                        <li> <i class="fas fa-mobile-alt"></i> <b>Mobile-No: <%=r.professionalmobileno%></b></li>
+                        <li> <i class="fas fa-envelope"></i> <b>Email-ID: <%=r.professionalemailid%></b></li>
+                        <li> <b>Service-Provided: <%=r.professionalprofession%></b></li>
+                        <li> <b>Charge: &#8377; <%=r.professionalprice%></b></li>
+                        <li> <b>Gender: <%=r.professionalsex%></b> </li>
+                        <li> <b>ADD: <%=r.professionaladdress%></b> </li>
+                                   <% }); %>
+                        </h4>
+                        
+                        <form  action="/book/<%=result[0].customerid%>/<%=result[0].professionalid%>" method="POST">
+                          <div class="form-group">
+                           <label for="exampleFormControlTextarea1"><b>Info of the work</b></label>
+                           <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                           </div>
+                          <button class="btn btn-outline-success">Book</button>  
+                      </form>
+                      
+                       <button class="btn btn-outline-primary float-right">Go Back</button> 
+                       <br>
+                   <p><small><b>Note:the charge does not include any tax</b></small></p>  
+                   </div>
+            </div>
+         </div>
+         
+     <!---Jumbotron 2--->
+          <div class="jumbotron">
+          <label for="exampleInputEmail1"><b>Email address</b></label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name" required value="<%=result[0].customeremailid%>" readonly>
+             <label><b>Ratings</b></label>
+          <input type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" name="stars" required placeholder="Rate out of 5">
+         <label ><b>Your Comment</b></label>
+     <textarea class="form-control" id="common" rows="3" required name="test"></textarea>
+         <br>
+            <input type="submit" id="submit" class="btn btn-outline-dark"></input>
+             
+             <br>
+             <br>
+             <div id="yourcomments">
+                
+             </div>
+          
+        </div>
+   <!---Jumbotron 3--->
+        <div class="jumbotron">
+             <b>Other users comments</b>
+             <div id="comments">
+                
+             </div>
+             <button class="btn btn-primary" id="more">More Comments</button>
+        </div>
+        
+      </div>
+      <div class="col col-md-1 col-sm-0 col-xs-">
+         
+      </div>
+</div>
+</div>
+
+
+<script>
+   var uc=0;
+    $(document).ready(function()
+    {
+         var count=1;
+      
+         // for showing the content
+        $.getJSON("/last/<%=result[0].professionalid%>")
+        .then(function(data)
+        {
+            console.log(data);
+             addcomments(data);
+        })
+        
+        //for more comments 
+        $("#more").click(function(){
+              count++;
+              $.getJSON("/last/<%=result[0].professionalid%>/"+count)
+          .then(function(data)
+                    {
+                    console.log(data);
+                  addcomments(data);
+                   })
+         });
+               //for posting the comments and retreving the post
+             $("#submit").click(function(){
+                 var c1=$("#exampleInputEmail1").val();
+                 var c2=$("#common").val();
+                 var c3=$("#exampleInputEmail2").val();
+                 if(c1!=""&&c2!=""&&c3!=""&&c1==="<%= result[0].customeremailid%>")
+                 {
+                     $("#exampleInputEmail1").val(c1);
+                    create();  
+                 }else
+                 {
+                    alert("Data Incomplete or mistake");
+                 }
+                 
+             });
+        
+    });
+      //post request function
+      function addcomments(data)
+            {
+                 data.forEach(function(d)
+                 {
+                      var add=$('<div>'+d.professionalcomments+'</div>');
+                      $('#comments').append(add);
+                 });
+            }
+            //post request function
+            function addcomments1(data)
+            {    
+                console.log(data);
+                data.forEach(function(d)
+                 {
+                      var add=$('<div>'+d.professionalcomments+'</div>');
+                      $('#yourcomments').append(add);
+                 });
+            }
+            
+           //post request    
+       function create(){
+               var pro={
+                    name:$("#exampleInputEmail1").val(),
+                    test:$("#common").val(),
+                    stars:$("#exampleInputEmail2").val(),
+                    uc:uc
+               }
+               console.log($("#exampleFormControlTextarea1").val());
+              $.post("/last/<%=result[0].customerid%>/<%=result[0].professionalid%>",pro)
+          .then(function(data)
+                    {
+                     $("#exampleInputEmail1").val("<%=result[0].customeremailid%>");
+                     $("#exampleFormControlTextarea1").val("");
+                     $("#exampleInputEmail2").val("");
+                     console.log(data);
+                     addcomments1(data);
+                     uc++;
+                   }).catch(function(err)
+                   {
+                        console.log(err);
+                   })
+        
+       }
+    
+    
+</script>
+
+<% include ./partials/footer.ejs %>

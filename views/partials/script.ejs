@@ -1,0 +1,84 @@
+
+<script>
+   var uc=0;
+    $(document).ready(function()
+    {
+         var count=1;
+      
+         // for showing the content
+        $.getJSON("/last/<%=result[0].professionalid%>")
+        .then(function(data)
+        {
+             addcomments(data);
+        })
+        
+        //for more comments 
+        $("#more").click(function(){
+              count++;
+              $.getJSON("/last/<%=result[0].professionalid%>/"+count)
+          .then(function(data)
+                    {
+                  addcomments(data);
+                   })
+         });
+               //for posting the comments and retreving the post
+             $("#submit").click(function(){
+                 var c1=$("#exampleInputEmail1").val();
+                 var c2=$("#common").val();
+                 var c3=$("#exampleInputEmail2").val();
+                 if(c1!=""&&c2!=""&&c3!="")
+                 {
+                    create();  
+                 }else
+                 {
+                    alert("Data Incomplete");
+                 }
+                 
+             });
+        
+    });
+      //post request function
+      function addcomments(data)
+            {
+                 data.forEach(function(d)
+                 {
+                      var add=$('<div>'+d.professionalcomments+'</div>');
+                      $('#comments').append(add);
+                 });
+            }
+            //post request function
+            function addcomments1(data)
+            {    data.forEach(function(d)
+                 {
+                      var add=$('<div>'+d.professionalcomments+'</div>');
+                      $('#yourcomments').append(add);
+                 });
+            }
+            
+           //post request    
+       function create(){
+               var pro={
+                    name:$("#exampleInputEmail1").val(),
+                    test:$("#common").val(),
+                    stars:$("#exampleInputEmail2").val(),
+                    uc:uc
+               }
+               console.log($("#exampleFormControlTextarea1").val());
+              $.post("/last/<%=result[0].customerid%>/<%=result[0].professionalid%>",pro)
+          .then(function(data)
+                    {
+                     $("#exampleInputEmail1").val("");
+                     $("#exampleFormControlTextarea1").val("");
+                     $("#exampleInputEmail2").val("");
+                     console.log(data);
+                     addcomments1(data);
+                     uc++;
+                   }).catch(function(err)
+                   {
+                        console.log(err);
+                   })
+        
+       }
+    
+    
+</script>

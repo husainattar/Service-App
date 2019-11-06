@@ -1,0 +1,25 @@
+body {
+    background:#ffffff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+    max-width: 100%;
+    overflow-x: hidden;
+    font-family: 'Montserrat', sans-serif;
+}
+.navbar-brand
+{
+  /*  margin-left: rem;*/
+    color: #15db95;
+}
+
+.navbar {
+   background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
+}
+
+.nav.justify-content-end.navbar-nav.ml-auto li a
+{
+    color: white;
+}

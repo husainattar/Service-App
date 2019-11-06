@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+ <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Mali|Montserrat|Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+  <style>
+  body {
+    background:#ffffff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+    max-width: 100%;
+    overflow-x: hidden;
+    font-family: 'Montserrat', sans-serif;
+    background-attachment: fixed;
+}
+#brand
+{
+      color: #15db95;
+}
+.jumbotron
+{
+        background-color: #7fdbff; 
+}
+body ,html
+{
+      width: 100%;
+    height: 100%;
+}
+      .navbar-brand
+{
+    margin-left: rem;
+    color: #15db95;
+}
+
+.navbar {
+   background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
+}
+
+.nav.justify-content-end.navbar-nav.ml-auto li a
+{
+    color: white;
+}
+
+  </style>
+    </head>
+        <body>
+       
+        <nav class="navbar navbar-expand-sm fixed-top navbar-light bg-light ">
+		    <a class="navbar-brand" href="#" id="brand">Book My Service</a>
+            <!----- items in toggle button and icon---->
+		    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="   navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!----- items for collapsing---->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="nav justify-content-end navbar-nav ml-auto" >
+                    <li class="nav-item">
+                        <a class="nav-link" href="/view/<%=id%>"></i>View Profile</a>
+                    </li>
+                    <li class="nav-item">
+                       <%if (id > 1000) { %>
+                        <a class="nav-link" href="#"></i>Hello <%=result[0].professionalfirstname%> </a>
+                        <% } else{ %> 
+                         <a class="nav-link" href="#"></i>Hello <%=result[0].customerfirstname%> </a>
+                        <% } %>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://jinitmehta.000webhostapp.com/logout.php">Logout</a>
+                    </li>
+                </ul> 
+            </div>
+        </nav>

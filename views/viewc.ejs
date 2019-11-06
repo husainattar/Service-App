@@ -1,0 +1,43 @@
+<% include ./partials/header.ejs  %>
+
+<br>
+<br>
+<br>
+<div class="container">
+<div class="row">
+     <div class="col  col-md-1 col-sm-0 col-xs-0">
+
+</div>
+      <div class="col col-md-10 col-sm-12 col-xs-12">
+           
+<div class="jumbotron">
+             <div class="row">
+                  <div class="col-md-4 col-sm-4 col-xs-4">
+                      <img src="https://cdn3.iconfinder.com/data/icons/business-and-finance-icons/512/Business_Man-512.png" img-thumbnail class="img-thumbnail"> 
+                  </div>
+                   <div class="col-md-8 col-sm-8 col-xs-8">
+                        <h4>
+                             <% result.forEach(function(r){ %>
+                             
+                         <li> <b>NAME: <%=r.customerfirstname%>  <%=r.customerlastname%></b> </li>
+                         <li> <b>Age: <%=age%></b> </li>
+                         <li> <i class="fas fa-mobile-alt"></i> <b>Mobile-No: <%=r.customermobileno%></b></li>
+                         <li> <i class="fas fa-envelope"></i> <b>Email-ID: <%=r.customeremailid%></b></li>
+                         <li> <b>Gender: <%=r.customersex%></b> </li> 
+                         <li> <b>ADD: <%=r.customeraddress%></b> </li>
+                             <% }); %>
+                        </h4>
+                        <p>
+                <button type="button" class="btn btn-outline-primary form-inline">Go Back</button>
+                        </p>
+                   </div>
+            </div>
+         </div>
+
+     </div>
+      <div class="col col-md-1 col-sm-0 col-xs-0">
+           
+      </div>
+</div>
+</div>
+<% include ./partials/footer.ejs %>

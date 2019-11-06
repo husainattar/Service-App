@@ -1,0 +1,65 @@
+<br>
+<br>
+<br>
+<div class="container">
+<div class="row">
+     <div class="col  col-md-1 col-sm-1 col-xs-1">What is Lorem Ipsum?
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+Why do we use it?
+It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+
+</div>
+      <div class="col col-md-10 col-sm-10 col-xs-10">
+          <!---Jumbotron 1--->
+     <div class="jumbotron">
+             <div class="row">
+                  <div class="col-md-4 col-sm-4 col-xs-4">
+                      <img src="https://cdn3.iconfinder.com/data/icons/business-and-finance-icons/512/Business_Man-512.png" img-thumbnail class="img-thumbnail"> 
+                  </div>
+                   <div class="col-md-8 col-sm-8 col-xs-8">
+                        <h4>
+                             Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                             when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                        </h4>
+                        <form action="/book/<%=result[0].customerid%>/<%=result[0].professionalid%>" method="POST">
+                            <div class="form-group">
+                 <label for="exampleFormControlTextarea1"><b>Info of the work</b></label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name ="text" rows="3"></textarea>
+                <button type="button" class="btn btn-outline-success">Book Now</button>
+                <button type="button" class="btn btn-outline-primary form-inline">Go Back</button>
+                       </div>
+                        </form>
+                   </div>
+            </div>
+         </div>
+         
+     <!---Jumbotron 2--->
+          <div class="jumbotron">
+             
+          <label for="exampleInputEmail1"><b>Email address</b></label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name" placeholder="Enter email">
+          <div class="form-group">
+         <label for="exampleFormControlTextarea1"><b>Your Comment</b></label>
+                   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="service"></textarea>
+                   </div>
+                   <input type="submit" id="submit" class="btn btn-outline-dark"></input>
+             
+             <br>
+             <br>
+             <div id="yourcomments">
+                
+             </div>
+        </div>
+   <!---Jumbotron 3--->
+        <% include ./details3.ejs %>
+        
+      </div>
+      <div class="col col-md-1 col-sm-1 col-xs-1">
+           The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact 
+           original form, accompanied by English versions from the 1914 translation by H. Rackham.
+      </div>
+</div>
+</div>
+
