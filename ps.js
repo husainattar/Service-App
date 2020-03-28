@@ -2,8 +2,8 @@ var passport=require("passport"),
  GoogleStrategy = require('passport-google-oauth20').Strategy,
    User=require("../models/user"),
    connection=require("../data/data.js");
-// 
 
+// Google sign to store user data in MySql Database.
 
 passport.serializeUser((user, done) => {
     done(null, user.id);
@@ -14,6 +14,8 @@ connection.query("select * from user where id = '"+id+"'"+";",function(err,rows)
     });
 
 });
+
+
 
 passport.use(
     new GoogleStrategy({
@@ -55,7 +57,7 @@ passport.use(
     })
 );
 
-///////new one
+// Google sign to store user data in MongoDB (NoSql) Database.
 /*const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const keys = require('./keys');
